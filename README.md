@@ -195,109 +195,170 @@ class LivingLLM:
 
 ### `src/sleep.py`
 
-_Handles Generative Replay (Dreaming) and Adaptive Pruning._
+_Handles Generative Replay (Dreaming), Adaptive Pruning, and the full Sleep Cycle._
 
 ```python
 import torch
 import random
 import logging
-from typing import List, Dict
-from .memory import merge_stm_to_ltm, reset_stm
+from typing import List, Dict, Optional
+from .memory import merge_stm_to_ltm, reset_stm, load_ltm_to_stm
 
 logger = logging.getLogger(__name__)
 
 class DreamGenerator:
+    """Generates synthetic 'dream' data based on recent memories."""
     def __init__(self, model, tokenizer):
         self.model = model
         self.tokenizer = tokenizer
 
-    def generate_dream(self, seed: str) -> str:
+    def generate_dream(self, seed_text: str, max_length: int = 64) -> str:
         self.model.eval()
-        inputs = self.tokenizer(seed, return_tensors="pt").to(self.model.device)
+        inputs = self.tokenizer(seed_text, return_tensors="pt").to(self.model.device)
         with torch.no_grad():
-            outputs = self.model.generate(**inputs, max_new_tokens=64, do_sample=True, temperature=0.8)
+            outputs = self.model.generate(
+                **inputs, max_new_tokens=max_length, do_sample=True,
+                temperature=0.8, pad_token_id=self.tokenizer.eos_token_id
+            )
         return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-def dream_cycle(model, topics: List[str], num_dreams: int = 5) -> Dict:
-    logger.info(f"💤 REM Sleep ({num_dreams} cycles)...")
+def dream_cycle(model, prompts_to_consolidate: List[str], num_dreams: int = 5, learning_rate: float = 1e-5) -> Dict[str, float]:
+    logger.info(f"💤 Starting REM Sleep ({num_dreams} dreams)...")
     model.model.train()
-    optimizer = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.model.parameters()), lr=1e-5)
+
+    # Fresh optimizer for sleep — avoids corrupting wake-state momentum
+    optimizer = torch.optim.AdamW(
+        filter(lambda p: p.requires_grad, model.model.parameters()), lr=learning_rate
+    )
     dream_gen = DreamGenerator(model.model, model.tokenizer)
-    losses = []
+    metrics = {"losses": []}
 
     for i in range(num_dreams):
-        seed = random.choice(topics) if topics else "The system logic is"
-        dream = dream_gen.generate_dream(seed)
+        seed = random.choice(prompts_to_consolidate) if prompts_to_consolidate else "The system logic is"
+        dream_content = dream_gen.generate_dream(seed)
         model.model.train()
 
-        inputs = model.tokenizer(dream, return_tensors="pt", truncation=True, max_length=128).to(model.device)
-        loss = model.model(**inputs, labels=inputs.input_ids).loss
+        inputs = model.tokenizer(dream_content, return_tensors="pt", truncation=True, max_length=128).to(model.device)
+        loss = model.model(**inputs, labels=inputs["input_ids"]).loss
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        losses.append(loss.item())
-    return {"avg_loss": sum(losses)/len(losses) if losses else 0}
+        metrics["losses"].append(loss.item())
 
-def synaptic_pruning(model, ratio: float = 0.15) -> Dict:
-    logger.info("✂️ Synaptic Pruning...")
-    count = 0
-    target = getattr(model, "model", model)
+    avg_loss = sum(metrics["losses"]) / len(metrics["losses"]) if metrics["losses"] else 0.0
+    return {"avg_loss": avg_loss}
+
+def synaptic_pruning(model, pruning_ratio: float = 0.15) -> Dict[str, int]:
+    logger.info("✂️  Initiating Synaptic Pruning...")
+    pruned_count = 0
+    total_params = 0
+    target_model = getattr(model, "model", model)
+
     with torch.no_grad():
-        for name, param in target.named_parameters():
+        for name, param in target_model.named_parameters():
             if "lora" in name and param.requires_grad:
-                threshold = torch.quantile(param.abs().cpu(), ratio).to(param.device)
-                mask = param.abs() > threshold
-                count += (~mask).sum().item()
+                total_params += param.numel()
+                weights_abs = param.abs()
+                threshold = torch.quantile(weights_abs.cpu(), pruning_ratio).to(param.device)
+                mask = weights_abs > threshold
+                pruned_count += (~mask).sum().item()
                 param.data *= mask.float()
-    return {"pruned": count}
 
-def full_sleep_cycle(model, topics=None) -> Dict:
-    if not topics: topics = ["Rui is", "The core system is"]
-    d_stats = dream_cycle(model, topics)
-    p_stats = synaptic_pruning(model)
+                # CRITICAL FIX: Zero out AdamW optimizer states
+                # Without this, momentum (exp_avg) and variance (exp_avg_sq)
+                # will resurrect pruned weights on the next training step.
+                optimizer = getattr(model, "optimizer", None)
+                if optimizer and param in optimizer.state:
+                    state = optimizer.state[param]
+                    if "exp_avg" in state:
+                        state["exp_avg"] *= mask.float()
+                    if "exp_avg_sq" in state:
+                        state["exp_avg_sq"] *= mask.float()
+
+    return {"pruned_count": pruned_count, "pruning_ratio": pruning_ratio}
+
+def full_sleep_cycle(model, active_topics: List[str] = None) -> Dict:
+    """Execute a complete sleep cycle: Dream -> Prune -> Merge -> Reset -> Reload."""
+    if not active_topics:
+        active_topics = ["The nature of AI is", "Rui is", "System optimization involves"]
+
+    # Phase 1: Dreaming (Consolidation)
+    dream_stats = dream_cycle(model, active_topics)
+    # Phase 2: Pruning (Cleanup)
+    prune_stats = synaptic_pruning(model)
+    # Phase 3: Consolidation (STM -> LTM Transfer)
     merge_stm_to_ltm(model, merge_ratio=0.1)
+    # Phase 4: Reset STM and reload consolidated LTM
+    reset_stm(model)
+    load_ltm_to_stm(model)
+
     if hasattr(model, "sleep_cycles"): model.sleep_cycles += 1
-    return {**d_stats, **p_stats}
+    return {**dream_stats, **prune_stats}
 ```
 
 ### `src/memory.py`
 
-_Handles Disk Persistence and EMA Merging._
+_Handles Disk Persistence, EMA Merging, and STM Reset._
 
 ```python
 import torch
 import torch.nn as nn
 import logging
 import os
+from typing import List, Dict, Optional
 
 logger = logging.getLogger(__name__)
-LTM_FILE = "checkpoints/ltm_state.pt"
+LTM_STORAGE_FILE = "checkpoints/ltm_state.pt"
 
-def merge_stm_to_ltm(model, merge_ratio: float = 0.1):
+def merge_stm_to_ltm(model, merge_ratio: float = 0.1) -> None:
+    """Consolidate STM adapter weights into LTM storage using EMA."""
     logger.info(f"🔄 Merging STM -> LTM (Ratio={merge_ratio})")
-    os.makedirs("checkpoints", exist_ok=True)
+    os.makedirs(os.path.dirname(LTM_STORAGE_FILE), exist_ok=True)
+
     stm_state = {k: v.clone().cpu() for k, v in model.model.named_parameters() if "lora" in k}
 
-    if os.path.exists(LTM_FILE):
-        ltm_state = torch.load(LTM_FILE)
+    if os.path.exists(LTM_STORAGE_FILE):
+        ltm_state = torch.load(LTM_STORAGE_FILE)
     else:
         ltm_state = stm_state
 
-    merged = {}
-    for k in stm_state:
-        if k in ltm_state:
-            merged[k] = (ltm_state[k] * (1 - merge_ratio)) + (stm_state[k] * merge_ratio)
-        else:
-            merged[k] = stm_state[k]
+    merged_state = {}
+    with torch.no_grad():
+        for name in stm_state:
+            if name in ltm_state:
+                merged_state[name] = (ltm_state[name] * (1 - merge_ratio)) + (stm_state[name] * merge_ratio)
+            else:
+                merged_state[name] = stm_state[name]
 
-    torch.save(merged, LTM_FILE)
+    torch.save(merged_state, LTM_STORAGE_FILE)
 
-def load_ltm_to_stm(model):
-    if not os.path.exists(LTM_FILE): return
-    logger.info("📂 Loading LTM...")
-    ltm_state = torch.load(LTM_FILE)
-    target = getattr(model, "model", model)
-    target.load_state_dict({k: v.to(model.device) for k, v in ltm_state.items() if k in target.state_dict()}, strict=False)
+def reset_stm(model) -> None:
+    """
+    Clear short-term memory (Hippocampus) to prepare for a new day.
+    LoRA B-matrices -> ZERO, A-matrices -> Kaiming (so ΔW = BA = 0).
+    """
+    logger.info("🗑️  Resetting STM (Clearing Hippocampus)...")
+    target_model = getattr(model, "model", model)
+
+    with torch.no_grad():
+        for name, param in target_model.named_parameters():
+            if "lora" in name:
+                if "lora_B" in name:
+                    nn.init.zeros_(param)
+                elif "lora_A" in name:
+                    nn.init.kaiming_uniform_(param, a=5**0.5)
+
+def load_ltm_to_stm(model) -> bool:
+    """Loads the LTM state into the active model on startup."""
+    if not os.path.exists(LTM_STORAGE_FILE):
+        return False
+    logger.info("📂 Loading LTM into Active Memory...")
+    ltm_state = torch.load(LTM_STORAGE_FILE)
+    target_model = getattr(model, "model", model)
+    current_state = target_model.state_dict()
+    new_state = {k: v.to(model.device) for k, v in ltm_state.items() if k in current_state}
+    target_model.load_state_dict(new_state, strict=False)
+    return True
 ```
 
 ### `run_simulation.py`

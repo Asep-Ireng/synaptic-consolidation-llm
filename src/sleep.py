@@ -7,7 +7,7 @@ import torch
 import random
 import logging
 from typing import List, Dict, Optional
-from .memory import merge_stm_to_ltm, reset_stm
+from .memory import merge_stm_to_ltm, reset_stm, load_ltm_to_stm
 
 logger = logging.getLogger(__name__)
 
@@ -137,6 +137,17 @@ def synaptic_pruning(
                 # 5. Apply Pruning (Zero out weak weights)
                 param.data *= mask.float()
                 
+                # 6. CRITICAL FIX: Zero out AdamW optimizer states
+                # Without this, momentum (exp_avg) and variance (exp_avg_sq)
+                # will resurrect pruned weights on the next training step.
+                optimizer = getattr(model, "optimizer", None)
+                if optimizer and param in optimizer.state:
+                    state = optimizer.state[param]
+                    if "exp_avg" in state:
+                        state["exp_avg"] *= mask.float()
+                    if "exp_avg_sq" in state:
+                        state["exp_avg_sq"] *= mask.float()
+                
     pruning_pct = (pruned_count / total_params * 100) if total_params > 0 else 0
     logger.info(f"✅ Pruned {pruned_count} synapses ({pruning_pct:.2f}% volume reduction)")
     
@@ -164,6 +175,12 @@ def full_sleep_cycle(model, active_topics: List[str] = None) -> Dict:
     # Phase 3: Consolidation (STM -> LTM Transfer)
     # We merge the surviving, strong weights into Long Term storage
     merge_stm_to_ltm(model, merge_ratio=0.1)
+    
+    # Phase 4: Reset STM and reload consolidated LTM
+    # Without this, the adapter accumulates all gradients forever
+    # and never actually "forgets" fast-learned noise.
+    reset_stm(model)
+    load_ltm_to_stm(model)
     
     # Update Cycle Counter
     if hasattr(model, "sleep_cycles"):
