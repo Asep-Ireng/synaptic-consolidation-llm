@@ -73,9 +73,9 @@ A biological maintenance process that runs periodically:
 
 #### Planned Improvement: Fisher Information Pruning
 
-|              |                                                                                                                                                                                                                           |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------- |
-| **What**     | Replace blind magnitude thresholding with importance-aware pruning. Squared gradients are accumulated during `learn()` as a Fisher Information estimate. Pruning decisions use `importance =                              | weight | × fisher_score`. |
+|              |                                                                                                                                                                                                                                              |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **What**     | Replace blind magnitude thresholding with importance-aware pruning. Squared gradients are accumulated during `learn()` as a Fisher Information estimate. Pruning decisions use `importance = \|weight\| × fisher_score`. |
 | **Changes**  | Weights that are small but sit on critical computation paths are preserved. Only weights that are both small _and_ unimportant to the loss landscape are pruned.                                                          |
 | **Value**    | Prevents "accidental lobotomy" — the current pruner can't distinguish between a small-but-critical weight and genuine noise. Fisher-weighted pruning is the standard approach in neural network compression for a reason. |
 | **Priority** | 🟢 P2 — Medium effort, directly improves pruning quality.                                                                                                                                                                 |
