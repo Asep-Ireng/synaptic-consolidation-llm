@@ -1,8 +1,5 @@
 # Project: Synaptic Consolidation LLM ("LivingLLM")
 
-**Owner:** Rui
-
-**Hardware:** NVIDIA RTX 5070 Ti (16GB VRAM)
 
 **Goal:** Create a continuous learning LLM that mimics biological memory consolidation (Wake/Sleep cycles) to solve Catastrophic Forgetting.
 
