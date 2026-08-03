@@ -1,0 +1,249 @@
+{"kind":"deck","id":"pr/c6uvfc","name":"Deck"}
+{"kind":"layout","layoutId":"237595cd-62e1-4581-84ed-a23183a57b6c","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"c07fa9a7-9baf-420c-816a-81c2fcfe99e4","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/idte9e","slide":1,"title":"BIO-INSPIRED CONTINUAL LEARNING","textShapes":12}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":1,"text":"BIO-INSPIRED CONTINUAL LEARNING","textPreview":"BIO-INSPIRED CONTINUAL LEARNING","textChars":31,"textLines":1,"bbox":[42,44,620,24]}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":1,"text":"LivingLLM","textPreview":"LivingLLM","textChars":9,"textLines":1,"bbox":[42,110,720,88]}
+{"kind":"textbox","id":"sh/0z61032l","slide":1,"text":"A wake / sleep architecture for synaptic consolidation in LLMs","textPreview":"A wake / sleep architecture for synaptic consolidation in LLMs","textChars":62,"textLines":1,"bbox":[48,208,720,62]}
+{"kind":"shape","id":"sh/72x4nap4","slide":1,"bbox":[48,300,420,0]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":1,"text":"Core idea","textPreview":"Core idea","textChars":9,"textLines":1,"bbox":[48,334,180,26]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":1,"text":"Learn quickly in a plastic short-term adapter.\nConsolidate selectively into a stable long-term store.","textPreview":"Learn quickly in a plastic short-term adapter. | Consolidate selectively into a stable long-term store.","textChars":101,"textLines":2,"bbox":[48,370,540,90]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":1,"bbox":[820,120,250,250]}
+{"kind":"shape","id":"sh/7y1kre1w","slide":1,"bbox":[930,250,250,250]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":1,"text":"STM","textPreview":"STM","textChars":3,"textLines":1,"bbox":[856,198,180,40]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":1,"text":"fast / plastic","textPreview":"fast / plastic","textChars":14,"textLines":1,"bbox":[856,244,180,26]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":1,"text":"LTM","textPreview":"LTM","textChars":3,"textLines":1,"bbox":[970,328,180,40]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":1,"text":"slow / stable","textPreview":"slow / stable","textChars":13,"textLines":1,"bbox":[970,374,180,26]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":1,"text":"↘","textPreview":"↘","textChars":1,"textLines":1,"bbox":[886,286,120,32]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":1,"text":"Architecture overview","textPreview":"Architecture overview","textChars":21,"textLines":1,"bbox":[42,650,400,24]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":1,"text":"Research architecture deck","textPreview":"Research architecture deck","textChars":26,"textLines":1,"bbox":[1010,650,228,24]}
+{"kind":"notes","id":"nt/idte9e","slide":1,"text":""}
+{"kind":"slide","id":"sl/riiusg","slide":2,"title":"01 / THE PROBLEM","textShapes":17}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":2,"text":"01 / THE PROBLEM","textPreview":"01 / THE PROBLEM","textChars":16,"textLines":1,"bbox":[42,38,520,22]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":2,"text":"The model must learn new facts without rewriting old ones","textPreview":"The model must learn new facts without rewriting old ones","textChars":57,"textLines":1,"bbox":[42,72,1060,76]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":2,"text":"Continual learning exposes a tension between plasticity and stability.","textPreview":"Continual learning exposes a tension between plasticity and stability.","textChars":70,"textLines":1,"bbox":[42,150,950,40]}
+{"kind":"shape","id":"sh/obm58z25","slide":2,"bbox":[42,244,350,270]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":2,"text":"WAKE","textPreview":"WAKE","textChars":4,"textLines":1,"bbox":[70,274,120,24]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":2,"text":"New information\narrives continuously","textPreview":"New information | arrives continuously","textChars":36,"textLines":2,"bbox":[70,324,270,72]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":2,"text":"High plasticity is useful — but fast updates can overwrite prior knowledge.","textPreview":"High plasticity is useful — but fast updates can overwrite prior knowledge.","textChars":75,"textLines":1,"bbox":[70,420,260,56]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":2,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[418,350,92,32]}
+{"kind":"shape","id":"sh/h0fepkzu","slide":2,"bbox":[536,244,350,270]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":2,"text":"FAILURE MODE","textPreview":"FAILURE MODE","textChars":12,"textLines":1,"bbox":[564,274,160,24]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":2,"text":"Catastrophic\nforgetting","textPreview":"Catastrophic | forgetting","textChars":23,"textLines":2,"bbox":[564,324,270,72]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":2,"text":"The newest task dominates the representation, degrading older skills and facts.","textPreview":"The newest task dominates the representation, degrading older skills and facts.","textChars":79,"textLines":1,"bbox":[564,420,260,56]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":2,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[912,350,92,32]}
+{"kind":"shape","id":"sh/58z25kb6","slide":2,"bbox":[1030,244,208,270]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":2,"text":"DESIGN BET","textPreview":"DESIGN BET","textChars":10,"textLines":1,"bbox":[1052,274,150,24]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":2,"text":"Separate\nfast and slow\nmemory","textPreview":"Separate | fast and slow | memory","textChars":29,"textLines":3,"bbox":[1052,324,150,108]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":2,"text":"Biological analogy","textPreview":"Biological analogy","textChars":18,"textLines":1,"bbox":[42,570,200,22]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":2,"text":"Hippocampus learns quickly; cortex stores what survives consolidation.","textPreview":"Hippocampus learns quickly; cortex stores what survives consolidation.","textChars":70,"textLines":1,"bbox":[42,596,740,28]}
+{"kind":"shape","id":"sh/czed8v6p","slide":2,"bbox":[42,672,1196,0]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":2,"text":"LIVINGLLM / MOTIVATION","textPreview":"LIVINGLLM / MOTIVATION","textChars":22,"textLines":1,"bbox":[42,680,560,22]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,680,58,22]}
+{"kind":"notes","id":"nt/riiusg","slide":2,"text":""}
+{"kind":"slide","id":"sl/iwricf","slide":3,"title":"02 / SYSTEM ARCHITECTURE","textShapes":27}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":3,"text":"02 / SYSTEM ARCHITECTURE","textPreview":"02 / SYSTEM ARCHITECTURE","textChars":24,"textLines":1,"bbox":[42,38,520,22]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":3,"text":"One model, two memory timescales","textPreview":"One model, two memory timescales","textChars":32,"textLines":1,"bbox":[42,72,1060,76]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":3,"text":"Wake handles interaction. Sleep decides what becomes durable.","textPreview":"Wake handles interaction. Sleep decides what becomes durable.","textChars":61,"textLines":1,"bbox":[42,150,950,40]}
+{"kind":"textbox","id":"sh/judg7ads","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[190,286,54,32]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[392,286,54,32]}
+{"kind":"textbox","id":"sh/1032lszq","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[640,286,54,32]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[896,286,54,32]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":3,"text":"↘","textPreview":"↘","textChars":1,"textLines":1,"bbox":[1040,454,54,32]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":3,"text":"←","textPreview":"←","textChars":1,"textLines":1,"bbox":[780,532,110,32]}
+{"kind":"shape","id":"sh/czed8v6p","slide":3,"bbox":[42,228,140,118]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":3,"text":"User\nprompt","textPreview":"User | prompt","textChars":11,"textLines":2,"bbox":[42,250,140,68]}
+{"kind":"shape","id":"sh/ytsvu9kn","slide":3,"bbox":[246,228,140,118]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":3,"text":"Frozen\nbase LLM","textPreview":"Frozen | base LLM","textChars":15,"textLines":2,"bbox":[246,250,140,68]}
+{"kind":"shape","id":"sh/cbulwval","slide":3,"bbox":[450,228,172,118]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":3,"text":"STM LoRA\nadapter","textPreview":"STM LoRA | adapter","textChars":16,"textLines":2,"bbox":[450,250,172,68]}
+{"kind":"shape","id":"sh/u54zidon","slide":3,"bbox":[726,228,140,118]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":3,"text":"Response","textPreview":"Response","textChars":8,"textLines":1,"bbox":[726,250,140,68]}
+{"kind":"shape","id":"sh/gbq1oryt","slide":3,"bbox":[970,228,240,118]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":3,"text":"LTM / consolidated\nstate","textPreview":"LTM / consolidated | state","textChars":24,"textLines":2,"bbox":[970,250,240,68]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":3,"text":"WAKE / ACTIVE CONTINUAL LEARNING","textPreview":"WAKE / ACTIVE CONTINUAL LEARNING","textChars":32,"textLines":1,"bbox":[42,194,520,22]}
+{"kind":"shape","id":"sh/0je9cvix","slide":3,"bbox":[42,382,1168,0]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":3,"text":"SLEEP / CONSOLIDATION","textPreview":"SLEEP / CONSOLIDATION","textChars":21,"textLines":1,"bbox":[42,410,360,22]}
+{"kind":"shape","id":"sh/idonyd0z","slide":3,"bbox":[42,456,220,96]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":3,"text":"Replay buffer","textPreview":"Replay buffer","textChars":13,"textLines":1,"bbox":[42,478,220,26]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":3,"text":"recent inputs + loss","textPreview":"recent inputs + loss","textChars":20,"textLines":1,"bbox":[42,510,220,22]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":3,"bbox":[330,456,220,96]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":3,"text":"Dream + verify","textPreview":"Dream + verify","textChars":14,"textLines":1,"bbox":[330,478,220,26]}
+{"kind":"textbox","id":"sh/tovahoza","slide":3,"text":"replay with critic","textPreview":"replay with critic","textChars":18,"textLines":1,"bbox":[330,510,220,22]}
+{"kind":"shape","id":"sh/032lszqt","slide":3,"bbox":[618,456,220,96]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":3,"text":"Prune","textPreview":"Prune","textChars":5,"textLines":1,"bbox":[618,478,220,26]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":3,"text":"importance-aware","textPreview":"importance-aware","textChars":16,"textLines":1,"bbox":[618,510,220,22]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":3,"bbox":[906,456,220,96]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":3,"text":"EMA merge","textPreview":"EMA merge","textChars":9,"textLines":1,"bbox":[906,478,220,26]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":3,"text":"STM → LTM","textPreview":"STM → LTM","textChars":9,"textLines":1,"bbox":[906,510,220,22]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":3,"text":"The loop closes when the consolidated state becomes the next wake baseline.","textPreview":"The loop closes when the consolidated state becomes the next wake baseline.","textChars":75,"textLines":1,"bbox":[42,594,920,28]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":3,"bbox":[42,672,1196,0]}
+{"kind":"textbox","id":"sh/lwval87e","slide":3,"text":"LIVINGLLM / ARCHITECTURE","textPreview":"LIVINGLLM / ARCHITECTURE","textChars":24,"textLines":1,"bbox":[42,680,560,22]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1180,680,58,22]}
+{"kind":"notes","id":"nt/iwricf","slide":3,"text":""}
+{"kind":"slide","id":"sl/lxxa6g","slide":4,"title":"03 / WAKE PHASE","textShapes":23}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":4,"text":"03 / WAKE PHASE","textPreview":"03 / WAKE PHASE","textChars":15,"textLines":1,"bbox":[42,38,520,22]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":4,"text":"The STM adapter absorbs new information quickly","textPreview":"The STM adapter absorbs new information quickly","textChars":47,"textLines":1,"bbox":[42,72,1060,76]}
+{"kind":"textbox","id":"sh/knih4byh","slide":4,"text":"The base model stays frozen while a high-rank LoRA adapter handles rapid updates.","textPreview":"The base model stays frozen while a high-rank LoRA adapter handles rapid updates.","textChars":81,"textLines":1,"bbox":[42,150,950,40]}
+{"kind":"shape","id":"sh/vu9knih4","slide":4,"bbox":[42,250,720,254]}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":4,"text":"ACTIVE PATH","textPreview":"ACTIVE PATH","textChars":11,"textLines":1,"bbox":[72,274,160,22]}
+{"kind":"shape","id":"sh/d0z61032","slide":4,"bbox":[72,330,150,86]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":4,"text":"Input","textPreview":"Input","textChars":5,"textLines":1,"bbox":[72,344,150,28]}
+{"kind":"textbox","id":"sh/vixczed8","slide":4,"text":"new stream","textPreview":"new stream","textChars":10,"textLines":1,"bbox":[72,378,150,22]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[222,357,42,32]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":4,"bbox":[270,330,150,86]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":4,"text":"Base","textPreview":"Base","textChars":4,"textLines":1,"bbox":[270,344,150,28]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":4,"text":"frozen LLM","textPreview":"frozen LLM","textChars":10,"textLines":1,"bbox":[270,378,150,22]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[420,357,42,32]}
+{"kind":"shape","id":"sh/g7adsji5","slide":4,"bbox":[468,330,150,86]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":4,"text":"STM","textPreview":"STM","textChars":3,"textLines":1,"bbox":[468,344,150,28]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":4,"text":"high-rank LoRA","textPreview":"high-rank LoRA","textChars":14,"textLines":1,"bbox":[468,378,150,22]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[618,357,42,32]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":4,"bbox":[666,330,150,86]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":4,"text":"Output","textPreview":"Output","textChars":6,"textLines":1,"bbox":[666,344,150,28]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":4,"text":"generated text","textPreview":"generated text","textChars":14,"textLines":1,"bbox":[666,378,150,22]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":4,"text":"Learning signal","textPreview":"Learning signal","textChars":15,"textLines":1,"bbox":[72,444,140,20]}
+{"kind":"textbox","id":"sh/bulwval8","slide":4,"text":"High learning rate → fast adaptation","textPreview":"High learning rate → fast adaptation","textChars":36,"textLines":1,"bbox":[220,442,360,24]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":4,"text":"Why LoRA?","textPreview":"Why LoRA?","textChars":9,"textLines":1,"bbox":[832,252,280,34]}
+{"kind":"shape","id":"sh/tovahoza","slide":4,"bbox":[832,300,360,0]}
+{"kind":"textbox","id":"sh/032lszqt","slide":4,"text":"• Keeps the backbone stable\n• Limits trainable parameters\n• Gives wake learning a bounded workspace\n• Can be reset after consolidation","textPreview":"• Keeps the backbone stable | • Limits trainable parameters | • Gives wake learning a bounded workspace | • Can be reset after consolidation","textChars":134,"textLines":4,"bbox":[832,330,360,140]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":4,"bbox":[832,514,190,26]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":4,"text":"IMPLEMENTED CONCEPT","textPreview":"IMPLEMENTED CONCEPT","textChars":19,"textLines":1,"bbox":[832,515,190,22]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":4,"text":"Current code uses a single LoRA adapter; dual STM/LTM separation is the next architectural step.","textPreview":"Current code uses a single LoRA adapter; dual STM/LTM separation is the next architectural step.","textChars":96,"textLines":1,"bbox":[832,554,360,64]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":4,"bbox":[42,672,1196,0]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":4,"text":"LIVINGLLM / WAKE","textPreview":"LIVINGLLM / WAKE","textChars":16,"textLines":1,"bbox":[42,680,560,22]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1180,680,58,22]}
+{"kind":"notes","id":"nt/lxxa6g","slide":4,"text":""}
+{"kind":"slide","id":"sl/iopzph","slide":5,"title":"04 / SLEEP PHASE","textShapes":27}
+{"kind":"textbox","id":"sh/cvixczed","slide":5,"text":"04 / SLEEP PHASE","textPreview":"04 / SLEEP PHASE","textChars":16,"textLines":1,"bbox":[42,38,520,22]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":5,"text":"Sleep turns noisy short-term updates into durable memory","textPreview":"Sleep turns noisy short-term updates into durable memory","textChars":56,"textLines":1,"bbox":[42,72,1060,76]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":5,"text":"Each stage addresses a different failure mode in continual learning.","textPreview":"Each stage addresses a different failure mode in continual learning.","textChars":68,"textLines":1,"bbox":[42,150,950,40]}
+{"kind":"shape","id":"sh/54zidony","slide":5,"bbox":[42,252,220,220]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":5,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[60,270,50,28]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":5,"text":"DREAM","textPreview":"DREAM","textChars":5,"textLines":1,"bbox":[60,314,184,34]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":5,"text":"Generate candidate replay from recent topics.","textPreview":"Generate candidate replay from recent topics.","textChars":45,"textLines":1,"bbox":[60,368,184,70]}
+{"kind":"textbox","id":"sh/1032lszq","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[260,344,28,32]}
+{"kind":"shape","id":"sh/cfa9w3m9","slide":5,"bbox":[282,252,220,220]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":5,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[300,270,50,28]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":5,"text":"VERIFY","textPreview":"VERIFY","textChars":6,"textLines":1,"bbox":[300,314,184,34]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":5,"text":"A frozen critic rewards coherent, consistent dreams.","textPreview":"A frozen critic rewards coherent, consistent dreams.","textChars":52,"textLines":1,"bbox":[300,368,184,70]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[500,344,28,32]}
+{"kind":"shape","id":"sh/2t83itgf","slide":5,"bbox":[522,252,220,220]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":5,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[540,270,50,28]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":5,"text":"PRUNE","textPreview":"PRUNE","textChars":5,"textLines":1,"bbox":[540,314,184,34]}
+{"kind":"textbox","id":"sh/9knih4by","slide":5,"text":"Fisher sensitivity protects small-but-critical weights.","textPreview":"Fisher sensitivity protects small-but-critical weights.","textChars":55,"textLines":1,"bbox":[540,368,184,70]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[740,344,28,32]}
+{"kind":"shape","id":"sh/ra5gbq1o","slide":5,"bbox":[762,252,220,220]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":5,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[780,270,50,28]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":5,"text":"MERGE","textPreview":"MERGE","textChars":5,"textLines":1,"bbox":[780,314,184,34]}
+{"kind":"textbox","id":"sh/54zidony","slide":5,"text":"EMA transfers surviving STM weights into LTM.","textPreview":"EMA transfers surviving STM weights into LTM.","textChars":45,"textLines":1,"bbox":[780,368,184,70]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[980,344,28,32]}
+{"kind":"shape","id":"sh/nap4r65w","slide":5,"bbox":[1002,252,220,220]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1020,270,50,28]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":5,"text":"RESET + WARM","textPreview":"RESET + WARM","textChars":12,"textLines":1,"bbox":[1020,314,184,34]}
+{"kind":"textbox","id":"sh/cvixczed","slide":5,"text":"Reset STM, reload LTM, calibrate the new baseline.","textPreview":"Reset STM, reload LTM, calibrate the new baseline.","textChars":50,"textLines":1,"bbox":[1020,368,184,70]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":5,"text":"Consolidation rule","textPreview":"Consolidation rule","textChars":18,"textLines":1,"bbox":[42,540,180,22]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":5,"text":"LTM ← LTM × (1 − r) + STM × r","textPreview":"LTM ← LTM × (1 − r) + STM × r","textChars":29,"textLines":1,"bbox":[244,534,500,34]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":5,"text":"The merge rate controls how much of the fast learner survives each sleep cycle.","textPreview":"The merge rate controls how much of the fast learner survives each sleep cycle.","textChars":79,"textLines":1,"bbox":[42,580,820,26]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":5,"bbox":[42,672,1196,0]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":5,"text":"LIVINGLLM / SLEEP","textPreview":"LIVINGLLM / SLEEP","textChars":17,"textLines":1,"bbox":[42,680,560,22]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1180,680,58,22]}
+{"kind":"notes","id":"nt/iopzph","slide":5,"text":""}
+{"kind":"slide","id":"sl/bbb1uc","slide":6,"title":"05 / DESIGN RISKS","textShapes":22}
+{"kind":"textbox","id":"sh/loj2t83i","slide":6,"text":"05 / DESIGN RISKS","textPreview":"05 / DESIGN RISKS","textChars":17,"textLines":1,"bbox":[42,38,520,22]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":6,"text":"The architecture is promising — but the sleep loop must be disciplined","textPreview":"The architecture is promising — but the sleep loop must be disciplined","textChars":70,"textLines":1,"bbox":[42,72,1060,76]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":6,"text":"The audit identifies four places where a biologically inspired metaphor can fail in software.","textPreview":"The audit identifies four places where a biologically inspired metaphor can fail in software.","textChars":93,"textLines":1,"bbox":[42,150,950,40]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":6,"text":"RISK","textPreview":"RISK","textChars":4,"textLines":1,"bbox":[42,238,260,22]}
+{"kind":"textbox","id":"sh/lwval87e","slide":6,"text":"WHY IT MATTERS","textPreview":"WHY IT MATTERS","textChars":14,"textLines":1,"bbox":[340,238,300,22]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":6,"text":"ARCHITECTURAL RESPONSE","textPreview":"ARCHITECTURAL RESPONSE","textChars":22,"textLines":1,"bbox":[760,238,420,22]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":6,"bbox":[42,270,1196,0]}
+{"kind":"textbox","id":"sh/sneloj2t","slide":6,"text":"Self-reinforcing dreams","textPreview":"Self-reinforcing dreams","textChars":23,"textLines":1,"bbox":[42,292,260,44]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":6,"text":"Train on model-generated noise","textPreview":"Train on model-generated noise","textChars":30,"textLines":1,"bbox":[340,292,340,44]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":6,"text":"Replay real learned inputs + frozen reference / KL anchor","textPreview":"Replay real learned inputs + frozen reference / KL anchor","textChars":57,"textLines":1,"bbox":[760,292,420,44]}
+{"kind":"shape","id":"sh/czed8v6p","slide":6,"bbox":[42,356,1196,0]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":6,"text":"Blind magnitude pruning","textPreview":"Blind magnitude pruning","textChars":23,"textLines":1,"bbox":[42,376,260,44]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":6,"text":"Small weights can be structurally critical","textPreview":"Small weights can be structurally critical","textChars":42,"textLines":1,"bbox":[340,376,340,44]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":6,"text":"Use Fisher-weighted sensitivity","textPreview":"Use Fisher-weighted sensitivity","textChars":31,"textLines":1,"bbox":[760,376,420,44]}
+{"kind":"shape","id":"sh/cbulwval","slide":6,"bbox":[42,440,1196,0]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":6,"text":"Momentum resurrection","textPreview":"Momentum resurrection","textChars":21,"textLines":1,"bbox":[42,460,260,44]}
+{"kind":"textbox","id":"sh/u54zidon","slide":6,"text":"Adam states rebuild pruned weights","textPreview":"Adam states rebuild pruned weights","textChars":34,"textLines":1,"bbox":[340,460,340,44]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":6,"text":"Zero optimizer slices when masking","textPreview":"Zero optimizer slices when masking","textChars":34,"textLines":1,"bbox":[760,460,420,44]}
+{"kind":"shape","id":"sh/gbq1oryt","slide":6,"bbox":[42,524,1196,0]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":6,"text":"Wake-up instability","textPreview":"Wake-up instability","textChars":19,"textLines":1,"bbox":[42,544,260,44]}
+{"kind":"textbox","id":"sh/54zidony","slide":6,"text":"STM reset meets a shifted base","textPreview":"STM reset meets a shifted base","textChars":30,"textLines":1,"bbox":[340,544,340,44]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":6,"text":"Warm up and calibrate after LTM reload","textPreview":"Warm up and calibrate after LTM reload","textChars":38,"textLines":1,"bbox":[760,544,420,44]}
+{"kind":"shape","id":"sh/nyd0z610","slide":6,"bbox":[42,608,1196,0]}
+{"kind":"shape","id":"sh/cvixczed","slide":6,"bbox":[42,638,150,26]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":6,"text":"AUDIT TAKEAWAY","textPreview":"AUDIT TAKEAWAY","textChars":14,"textLines":1,"bbox":[42,639,150,22]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":6,"text":"The core idea works only if replay is grounded and pruning is importance-aware.","textPreview":"The core idea works only if replay is grounded and pruning is importance-aware.","textChars":79,"textLines":1,"bbox":[212,638,900,24]}
+{"kind":"shape","id":"sh/nap4r65w","slide":6,"bbox":[42,672,1196,0]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":6,"text":"LIVINGLLM / RISK CONTROL","textPreview":"LIVINGLLM / RISK CONTROL","textChars":24,"textLines":1,"bbox":[42,680,560,22]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1180,680,58,22]}
+{"kind":"notes","id":"nt/bbb1uc","slide":6,"text":""}
+{"kind":"slide","id":"sl/0jn98c","slide":7,"title":"06 / MEMORY DYNAMICS","textShapes":14}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":7,"text":"06 / MEMORY DYNAMICS","textPreview":"06 / MEMORY DYNAMICS","textChars":20,"textLines":1,"bbox":[42,38,520,22]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":7,"text":"Plasticity and stability are allocated to different modules","textPreview":"Plasticity and stability are allocated to different modules","textChars":59,"textLines":1,"bbox":[42,72,1060,76]}
+{"kind":"textbox","id":"sh/61032lsz","slide":7,"text":"The proposed separation creates a controllable information bottleneck.","textPreview":"The proposed separation creates a controllable information bottleneck.","textChars":70,"textLines":1,"bbox":[42,150,950,40]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":7,"bbox":[42,242,530,290]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":7,"text":"STM / HIPPOCAMPUS","textPreview":"STM / HIPPOCAMPUS","textChars":17,"textLines":1,"bbox":[72,270,300,24]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":7,"text":"Fast learner","textPreview":"Fast learner","textChars":12,"textLines":1,"bbox":[72,310,300,44]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":7,"text":"High rank\nHigh learning rate\nWake-only activity\nReset after consolidation","textPreview":"High rank | High learning rate | Wake-only activity | Reset after consolidation","textChars":73,"textLines":4,"bbox":[72,378,260,120]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":7,"bbox":[706,242,530,290]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":7,"text":"LTM / CORTEX","textPreview":"LTM / CORTEX","textChars":12,"textLines":1,"bbox":[736,270,300,24]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":7,"text":"Stable store","textPreview":"Stable store","textChars":12,"textLines":1,"bbox":[736,310,300,44]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":7,"text":"Low rank\nSlow updates\nSurvives sleep cycles\nBecomes the next baseline","textPreview":"Low rank | Slow updates | Survives sleep cycles | Becomes the next baseline","textChars":69,"textLines":4,"bbox":[736,378,280,120]}
+{"kind":"textbox","id":"sh/wval87ed","slide":7,"text":"⇄","textPreview":"⇄","textChars":1,"textLines":1,"bbox":[574,356,132,32]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":7,"text":"Design implication","textPreview":"Design implication","textChars":18,"textLines":1,"bbox":[42,580,180,22]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":7,"text":"Only the information that survives verification, pruning, and EMA transfer becomes durable.","textPreview":"Only the information that survives verification, pruning, and EMA transfer becomes durable.","textChars":91,"textLines":1,"bbox":[244,574,900,34]}
+{"kind":"shape","id":"sh/7mp0bi9s","slide":7,"bbox":[42,672,1196,0]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":7,"text":"LIVINGLLM / MEMORY","textPreview":"LIVINGLLM / MEMORY","textChars":18,"textLines":1,"bbox":[42,680,560,22]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1180,680,58,22]}
+{"kind":"notes","id":"nt/0jn98c","slide":7,"text":""}
+{"kind":"slide","id":"sl/q3iv79","slide":8,"title":"07 / EVALUATION","textShapes":23}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":8,"text":"07 / EVALUATION","textPreview":"07 / EVALUATION","textChars":15,"textLines":1,"bbox":[42,38,520,22]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":8,"text":"A continual-learning claim needs a retention test","textPreview":"A continual-learning claim needs a retention test","textChars":49,"textLines":1,"bbox":[42,72,1060,76]}
+{"kind":"textbox","id":"sh/lwval87e","slide":8,"text":"The project is not validated by generation quality alone.","textPreview":"The project is not validated by generation quality alone.","textChars":57,"textLines":1,"bbox":[42,150,950,40]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":8,"bbox":[42,238,500,318]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":8,"text":"PROBE SET","textPreview":"PROBE SET","textChars":9,"textLines":1,"bbox":[72,268,180,24]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":8,"text":"Measure after every sleep cycle","textPreview":"Measure after every sleep cycle","textChars":31,"textLines":1,"bbox":[72,306,380,34]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":8,"text":"• Per-task accuracy\n• Backward transfer (BWT)\n• Forward transfer (FWT)\n• Forgetting delta\n• Plasticity vs stability trade-off","textPreview":"• Per-task accuracy | • Backward transfer (BWT) | • Forward transfer (FWT) | • Forgetting delta | • Plasticity vs stability trade-off","textChars":125,"textLines":5,"bbox":[72,370,360,150]}
+{"kind":"shape","id":"sh/at47y1kr","slide":8,"bbox":[594,238,644,318]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":8,"text":"ROADMAP","textPreview":"ROADMAP","textChars":7,"textLines":1,"bbox":[624,268,180,24]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":8,"text":"Prioritize what makes the experiment credible","textPreview":"Prioritize what makes the experiment credible","textChars":45,"textLines":1,"bbox":[624,306,540,34]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":8,"bbox":[624,372,54,26]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":8,"text":"P0","textPreview":"P0","textChars":2,"textLines":1,"bbox":[624,373,54,22]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":8,"text":"Episodic memory buffer","textPreview":"Episodic memory buffer","textChars":22,"textLines":1,"bbox":[700,373,220,24]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":8,"text":"Ground replay in what was actually learned.","textPreview":"Ground replay in what was actually learned.","textChars":43,"textLines":1,"bbox":[932,373,260,24]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":8,"bbox":[624,414,54,26]}
+{"kind":"textbox","id":"sh/lwval87e","slide":8,"text":"P0","textPreview":"P0","textChars":2,"textLines":1,"bbox":[624,415,54,22]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":8,"text":"Forgetting probes","textPreview":"Forgetting probes","textChars":17,"textLines":1,"bbox":[700,415,220,24]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":8,"text":"Quantify retention instead of assuming it.","textPreview":"Quantify retention instead of assuming it.","textChars":42,"textLines":1,"bbox":[932,415,260,24]}
+{"kind":"shape","id":"sh/ahoza1gv","slide":8,"bbox":[624,456,54,26]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":8,"text":"P1","textPreview":"P1","textChars":2,"textLines":1,"bbox":[624,457,54,22]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":8,"text":"Frozen reference + KL","textPreview":"Frozen reference + KL","textChars":21,"textLines":1,"bbox":[700,457,220,24]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":8,"text":"Anchor dreams against semantic drift.","textPreview":"Anchor dreams against semantic drift.","textChars":37,"textLines":1,"bbox":[932,457,260,24]}
+{"kind":"shape","id":"sh/tcj6tova","slide":8,"bbox":[624,498,54,26]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":8,"text":"P1","textPreview":"P1","textChars":2,"textLines":1,"bbox":[624,499,54,22]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":8,"text":"Dual LoRA","textPreview":"Dual LoRA","textChars":9,"textLines":1,"bbox":[700,499,220,24]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":8,"text":"Make STM/LTM separation structural.","textPreview":"Make STM/LTM separation structural.","textChars":35,"textLines":1,"bbox":[932,499,260,24]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":8,"text":"A good sleep cycle is one that improves retention without collapsing wake-time learning.","textPreview":"A good sleep cycle is one that improves retention without collapsing wake-time learning.","textChars":88,"textLines":1,"bbox":[42,606,1130,30]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":8,"bbox":[42,672,1196,0]}
+{"kind":"textbox","id":"sh/bulwval8","slide":8,"text":"LIVINGLLM / EVALUATION","textPreview":"LIVINGLLM / EVALUATION","textChars":22,"textLines":1,"bbox":[42,680,560,22]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1180,680,58,22]}
+{"kind":"notes","id":"nt/q3iv79","slide":8,"text":""}
+{"kind":"slide","id":"sl/qjm5bq","slide":9,"title":"THE THESIS","textShapes":11}
+{"kind":"textbox","id":"sh/65wjudg7","slide":9,"text":"THE THESIS","textPreview":"THE THESIS","textChars":10,"textLines":1,"bbox":[42,54,220,24]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":9,"text":"Continual learning needs\na memory architecture,\nnot just a bigger update.","textPreview":"Continual learning needs | a memory architecture, | not just a bigger update.","textChars":73,"textLines":3,"bbox":[42,118,760,220]}
+{"kind":"shape","id":"sh/obm58z25","slide":9,"bbox":[42,390,560,0]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":9,"text":"LivingLLM maps a biological principle onto an LLM system:","textPreview":"LivingLLM maps a biological principle onto an LLM system:","textChars":57,"textLines":1,"bbox":[42,430,640,26]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":9,"text":"learn fast → consolidate selectively → wake with a stable baseline","textPreview":"learn fast → consolidate selectively → wake with a stable baseline","textChars":66,"textLines":1,"bbox":[42,470,820,36]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":9,"bbox":[904,150,230,230]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":9,"bbox":[1018,264,170,170]}
+{"kind":"textbox","id":"sh/z61032ls","slide":9,"text":"WAKE","textPreview":"WAKE","textChars":4,"textLines":1,"bbox":[942,240,150,32]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":9,"text":"SLEEP","textPreview":"SLEEP","textChars":5,"textLines":1,"bbox":[1042,334,120,32]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":9,"text":"↘","textPreview":"↘","textChars":1,"textLines":1,"bbox":[944,300,100,32]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":9,"text":"Next proof point","textPreview":"Next proof point","textChars":16,"textLines":1,"bbox":[42,606,160,22]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":9,"text":"Show that sleep reduces forgetting while preserving plasticity.","textPreview":"Show that sleep reduces forgetting while preserving plasticity.","textChars":63,"textLines":1,"bbox":[212,602,820,30]}
+{"kind":"textbox","id":"sh/vixczed8","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1180,680,58,22]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":9,"text":"LIVINGLLM / SYNAPTIC CONSOLIDATION","textPreview":"LIVINGLLM / SYNAPTIC CONSOLIDATION","textChars":34,"textLines":1,"bbox":[42,680,560,22]}
+{"kind":"notes","id":"nt/qjm5bq","slide":9,"text":""}
