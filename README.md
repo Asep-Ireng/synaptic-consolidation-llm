@@ -8,7 +8,7 @@ The system splits the LLM into three biological components to balance **Plastici
 
 ### 1.1 The Cortex (Base Model)
 
-`Llama-3.2-3B-Instruct` loaded in 4-bit (NF4). Frozen parameters. Represents long-term stable knowledge.
+`Qwen/Qwen3-8B` (or a Qwen 3.x MoE variant) loaded in 4-bit (NF4). Frozen parameters. Represents long-term stable knowledge.
 
 #### Planned Improvement: Neocortical Integration
 
